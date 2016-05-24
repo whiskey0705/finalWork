@@ -1,0 +1,228 @@
+@charset "utf-8";
+/* 引入外部字体 */
+@font-face {
+    font-family: "GillSansMT";
+    src: url("../font/GillSansMT.ttf");
+}
+
+
+.cf::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.container {
+    min-width: 1280px;
+}
+
+
+/* 通知栏 */
+.notice {
+    background-color: #f3f3f3;
+    height: 36px;
+    line-height: 36px;
+}
+.contWidth {
+    margin: 0 auto;
+    width: 960px;
+}
+.contWidth a {
+    margin-left: 6px;
+    color: #21a557;
+}
+.contWidth a::after {
+    content: ">";
+    display: inline-block;
+}
+
+.close {
+    float: right;
+    position: relative;
+    cursor: pointer;
+}
+.close::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -15px;
+    top: 14px;
+    width: 9px;
+    height: 9px;
+    background: url("../img/spritesheet.png") no-repeat -5px -210px;
+}
+
+
+/* header头部导航 */
+header {
+    width: 960px;
+    height: 90px;
+    line-height: 90px;
+    margin: 0 auto;
+}
+.logo,
+.follow {
+    float: left;
+}
+.nav {float: right}
+
+/* logo部分 */
+.logo h1 {
+    margin: 0;
+}
+.logo-en {
+    font: 28px "GillSansMT";
+    color: #39a030;
+}
+.logo-bar {
+    background: url("../img/spritesheet.png") no-repeat -5px -254px;
+    width: 1px;
+    height: 18px;
+    display: inline-block;
+    margin: 0 4px 0 2px;
+}
+.logo-cn {
+    font: 22px "Hiragino Sans GB";
+    vertical-align: 2px;
+}
+/* 关注部分 */
+.followed {
+    background-color: #21a557;
+    color: #fff;
+    margin: 0 15px 0 30px;
+    display: inline-block;
+    text-align: center;
+    width: 55px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.followed:hover {
+    background-color: #2fb556;
+}
+.followed::before {
+    content: "";
+    display: inline-block;
+    background: url("../img/plus.png") no-repeat;
+    width: 8px;
+    height: 8px;
+    margin-right: 3px;
+    vertical-align: 5%;
+}
+.follow-num::before {
+    content: "粉丝";
+    display: inline-block;
+    color: #666;
+    margin-right: 6px;
+}
+
+/* 取消关注 */
+.unfollowed {
+    display: inline-block;
+    text-align: center;
+    background-color: #f8f8f8;
+    border: 1px solid #efefef;
+    border-radius: 2px;
+    margin: 0 15px 0 30px;
+    width: 107px;
+    height: 20px;
+    line-height: 20px;
+}
+.unfollowed:hover {
+    background-color: #fff;
+}
+.unfollowed-focus::before {
+    content: "";
+    display: inline-block;
+    width: 11px;
+    height: 9px;
+    margin-right: 5px;
+    background: url("../img/spritesheet.png") no-repeat -5px -340px;
+}
+.unfollowed-bar {
+    color: #ccc;
+    margin: 0 4px 0 5px;
+}
+.unfollowed-cancel {
+    color: #999;
+    cursor: pointer;
+}
+.unfollowed-cancel:hover {
+    color: #21a557;
+    text-decoration: underline;
+}
+
+
+/* 课程导航 */
+.nav li {
+    float: left;
+}
+.nav a {
+    font: 16px "Hiragino Sans GB";
+    color: #666;
+    margin-left: 55px;
+}
+.nav a:hover {
+    color: #39a030;
+}
+.search {
+    margin-left: 30px;
+    background: url("../img/spritesheet.png") no-repeat -5px -282px;
+    width: 19px;
+    height: 19px;
+    cursor: pointer;
+    margin-top: 35px;
+}
+.search:hover {
+    background-position: -5px -311px;
+}
+
+
+/* body部分 */
+
+/* 轮播图 */
+#slide {
+    position: relative;
+}
+.slide-list {
+    width: 100%;
+    height: 460px;
+    font-size: 0;
+    overflow: hidden;
+    position: relative;
+}
+.slide-list img {
+    max-width: 1652px;
+}
+.slide-list li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+/* IE9载入有BUG，第一张图的opacity=1无效 */
+.slide-list li.slide-current {
+    opacity: 1;
+    filter: alpha(opacity=1);
+}
+.ctrl {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+}
+.ctrl li {
+    display: inline-block;
+    background: url("../img/spritesheet.png") no-repeat -5px -170px;
+    width: 10px;
+    height: 10px;
+    margin-right: 11px;
+}
+.ctrl li.ctrl-current {
+    display: inline-block;
+    background: url("../img/spritesheet.png") no-repeat -5px -190px;
+    width: 10px;
+    height: 10px;
+}

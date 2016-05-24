@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播</title>
+    <style>
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 460px;
+        }
+        .slide-list {
+            width: 100%;
+            height: 460px;
+            font-size: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .slide-list img {
+            max-width: 1652px;
+        }
+        .slide-list li {
+            position: absolute;
+            width: 100%;
+            height: 460px;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+        .slide-list li.slide-current {
+            opacity: 1;
+            filter: alpha(opacity=1);
+        }
+        .ctrl {
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            bottom: 20px;
+            /*z-index: 10;*/
+        }
+        .ctrl li {
+            display: inline-block;
+            background: url("./img/spritesheet.png") no-repeat -5px -170px;
+            width: 10px;
+            height: 10px;
+            margin-right: 11px;
+        }
+        .ctrl li.ctrl-current {
+            display: inline-block;
+            background: url("./img/spritesheet.png") no-repeat -5px -190px;
+            width: 10px;
+            height: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide" id="slide">
+    <ul class="slide-list">
+        <li class="slide-current">
+            <a href="http://open.163.com/" target="_blank"><img src="img/banner1.jpg" alt="网易公开课"></a>
+        </li>
+        <li>
+            <a href="http://study.163.com/" target="_blank"><img src="img/banner2.jpg" alt="云课堂"></a>
+        </li>
+        <li>
+            <a href="http://www.icourse163.org/" target="_blank"><img src="img/banner3.jpg" alt="中国大学MOOC"></a>
+        </li>
+    </ul>
+    <ul class="ctrl" id="ctrl">
+        <li class="ctrl-current"></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<script>
+    window.onload = function ()
+    {
+        var oBox = document.getElementById("slide");
+        var aUl = document.getElementsByTagName("ul");
+        var aImg = aUl[0].getElementsByTagName("li");
+        var aNum = aUl[1].getElementsByTagName("li");
+        var timer = play = null;
+        var i = index = 0;
+
+        //切换按钮
+        for (i = 0; i < aNum.length; i++)
+        {
+            aNum[i].index = i;
+            aNum[i].onmouseover = function ()
+            {
+                show(this.index)
+            }
+        }
+
+        //鼠标划过关闭定时器
+        oBox.onmouseover = function ()
+        {
+            clearInterval(play)
+        };
+
+        //鼠标离开启动自动播放
+        oBox.onmouseout = function ()
+        {
+            autoPlay()
+        };
+
+        //自动播放函数
+        function autoPlay ()
+        {
+            play = setInterval(function () {
+                index++;
+                index >= aImg.length && (index = 0);
+                show(index);
+            },5000);
+        }
+        autoPlay();//应用
+
+        //图片切换, 淡入淡出效果
+        function show (a)
+        {
+            index = a;
+            var alpha = 0;
+            for (i = 0; i < aNum.length; i++)aNum[i].className = "";
+            aNum[index].className = "ctrl-current";
+            clearInterval(timer);
+
+            for (i = 0; i < aImg.length; i++)
+            {
+                aImg[i].style.opacity = 0;
+                aImg[i].style.filter = "alpha(opacity=0)";
+            }
+
+            timer = setInterval(function () {
+                alpha += 2;
+                alpha > 100 && (alpha =100);
+                aImg[index].style.opacity = alpha / 100;
+                aImg[index].style.filter = "alpha(opacity = " + alpha + ")";
+                alpha == 100 && clearInterval(timer)
+            },20);
+        }
+    };
+
+</script>
+</body>
+</html>
