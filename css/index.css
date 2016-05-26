@@ -13,7 +13,7 @@
 }
 
 .container {
-    min-width: 1280px;
+    min-width: 1080px;
 }
 
 
@@ -180,7 +180,9 @@ header {
 
 
 /* body部分 */
-
+.bd {
+    /*overflow-x: hidden;*/
+}
 /* 轮播图 */
 #slide {
     position: relative;
@@ -225,4 +227,321 @@ header {
     background: url("../img/spritesheet.png") no-repeat -5px -190px;
     width: 10px;
     height: 10px;
+}
+
+/* 产品介绍 */
+.product {
+    width: 960px;
+    margin: 0 auto;
+}
+.prod-row {
+    margin: 60px -80px 35px 0;
+}
+.prod-info {
+    padding-right: 80px;
+    float: left;
+    width: 33.3333%;
+    box-sizing: border-box;
+}
+.prod-info img {
+    float: left;
+    padding-right: 20px;
+}
+.prod-content {
+    overflow: hidden;
+}
+.prod-content h2 {
+    font-size: 22px;
+    font-weight: 700;
+}
+.prod-content p {
+    margin: 20px 0 33px;
+    text-align: justify;
+    color: #666;
+}
+.prod-content a {
+    font-size: 14px;
+    color: #39a030;
+}
+.prod-content a:hover {
+    text-decoration: underline;
+}
+
+
+/* 办公环境 */
+
+.office {
+    overflow: hidden;
+}
+.officeWidth {
+    position: relative;
+    left: 50%;
+    margin-left: -812px;
+    width: 1616px;
+    font-size: 0;
+}
+
+.office img {
+    box-sizing: border-box;
+    padding-left:4px;
+    float: left;
+    width: 20%;
+}
+
+/* 课程和排行 */
+.courseRank {
+    width: 960px;
+    margin: 80px auto;
+}
+.main {
+    width: 715px;
+    float: left;
+    margin-right: 20px;
+}
+.side {
+    float: left;
+    width: 223px;
+}
+/* 选项卡 */
+.tab {
+    width: 440px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 1px #333;
+    cursor: pointer;
+}
+.tab li {
+    float: left;
+    font-size: 20px;
+    width: 220px;
+    height: 50px;
+    line-height: 50px;
+}
+.tab1 {
+    background-color: #39a030;
+    color: #fff;
+}
+.tab2 {
+    color: #333;
+    background-color: #fff;
+}
+
+/* 详细课程 */
+.course {
+    margin: 0 -10px 20px;
+}
+
+.course-info {
+    box-sizing: border-box;
+    width: 225px;
+    box-shadow: 0 1px 1px #333;
+    float: left;
+    margin: 10px;
+}
+.course-img {
+    padding: 0 1px;
+}
+.course-content {
+    padding: 10px 5px;
+}
+
+.crs-author {
+    margin-top: 5px;
+    color: #999;
+}
+.crs-star {
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 2px;
+    margin: 6px 0;
+    color: #ddd;
+}
+.crs-star::before {
+    content: "";
+    display: inline-block;
+    background: url("../img/spritesheet.png") no-repeat -5px -229px;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.crs-price {
+    color: #ff3f00;
+}
+.limited {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+/* 页码 */
+.page {
+    font-size: 14px;
+    text-align: right;
+    margin-bottom: 40px;
+}
+.page span {
+    text-align: center;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.page span:hover {
+    color: #fff;
+    background-color: #9dd8b1;
+}
+.page .prev {
+    background: url("../img/rect-lf.png");
+    width: 30px;
+    height: 20px;
+}
+.page .next {
+    background: url("../img/rect-rt.png");
+    width: 30px;
+    height: 20px;
+}
+
+/* 侧边栏 */
+
+/* 机构简介 */
+.org-info {
+    background-color: #fff;
+    margin-bottom: 20px;
+    /*box-shadow: 0 1px 1px #ddd;*/
+}
+.org-info:hover {
+    box-shadow: 0 1px 1px #ddd;
+}
+.org-info h2 {
+    font-size: 16px;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+.org-video {
+    position: relative;
+    padding: 20px;
+}
+.org-video p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.org-video span {
+    position: absolute;
+    background: url("../img/play.png") no-repeat;
+    width: 46px;
+    height: 46px;
+    top: 80px;
+    left: 85px;
+    opacity: .5;
+    filter: alpha(opacity=50);
+    cursor: pointer;
+}
+.org-video span:hover {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+/* 排行榜 */
+.rank {
+    background-color: #fff;
+    /*box-shadow: 0 1px 1px #ddd;*/
+}
+.rank:hover {
+    box-shadow: 0 1px 1px #ddd;
+}
+.rank h2 {
+    font-size: 16px;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+.rank-items {
+    padding: 0 20px 20px;
+}
+.rank-item {
+    margin-top: 20px;
+}
+.item-face {
+    float: left;
+    margin-right: 12px;
+}
+.item-content {
+    overflow: hidden;
+}
+.item-content p {
+    margin-bottom: 10px;
+}
+.item-content span {
+    display: block;
+}
+.item-content span::before {
+    content: "";
+    display: inline-block;
+    background: url("../img/spritesheet.png") no-repeat -5px -229px;
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    margin-right: 4px;
+}
+
+/* footer */
+footer {
+    height: 262px;
+    color: #929496;
+    background-color: #2c3339;
+}
+.footWidth {
+    width: 960px;
+    margin: 0 auto;
+    padding: 80px 0;
+}
+.foot-logo h1 {
+    color: #39a030;
+}
+.copyrght {
+    font-size: 12.5px;
+    line-height: 2;
+    margin-top: 28px;
+}
+.link {
+    margin-left: 150px;
+}
+.link li,
+.aboutme li ,
+.more li {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.link a {
+    color: #929496;
+    font-size: 15px;
+}
+.link a:hover {
+    text-decoration: underline;
+}
+.foot-logo,
+.link,
+.aboutme,
+.more {
+    float: left;
+}
+
+.aboutme,
+.more {
+    margin-left: 100px;
+}
+.weibo::after {
+    content: "";
+    display: inline-block;
+    background: url("../img/spritesheet.png") no-repeat -5px -359px;
+    width: 20px;
+    height: 16px;
+    margin-left: 10px;
+    vertical-align: bottom;
+}
+.footWidth li:nth-child(1) {
+    font-size: 12.5px;
 }

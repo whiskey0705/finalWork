@@ -2,16 +2,16 @@ window.onload = function () {
     var oBox = document.getElementById("slide");
     var aOl = document.getElementsByTagName("ol");
     var aImg = aOl[0].getElementsByTagName("li");
-    var aNum = aOl[1].getElementsByTagName("li");
+    var aCtrl = aOl[1].getElementsByTagName("li");
     var timer = null;
     var play = null;
     var i = 0;
     var index = 0;
 
     //切换按钮
-    for (i = 0; i < aNum.length; i++) {
-        aNum[i].index = i;
-        aNum[i].onmouseover = function ()
+    for (i = 0; i < aCtrl.length; i++) {
+        aCtrl[i].index = i;
+        aCtrl[i].onmouseover = function ()
         {
             show(this.index);
         }
@@ -21,10 +21,10 @@ window.onload = function () {
     function show (a) {
         index = a;
         var alpha = 0;
-        for (i = 0; i < aNum.length; i++) {
-            aNum[i].className = "";
+        for (i = 0; i < aCtrl.length; i++) {
+            aCtrl[i].className = "";
         }
-        aNum[index].className = "ctrl-current";
+        aCtrl[index].className = "ctrl-current";
         clearInterval(timer);
 
         for (i = 0; i < aImg.length; i++) {
