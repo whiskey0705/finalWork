@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hotrank</title>
+    <style>
+        .side {
+            /*float: left;*/
+            width: 223px;
+        }
+
+        .org-info {
+            background-color: #fff;
+            margin-bottom: 20px;
+
+        }
+        .org-info:hover {
+            box-shadow: 0 1px 1px #ddd;
+        }
+        .org-info h2 {
+            font-size: 16px;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .org-video {
+            position: relative;
+            padding: 20px;
+        }
+        .org-video p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .org-play {
+            position: absolute;
+            background: url("./img/play.png") no-repeat;
+            width: 46px;
+            height: 46px;
+            top: 80px;
+            left: 85px;
+            opacity: .5;
+            filter: alpha(opacity=50);
+            cursor: pointer;
+        }
+        .org-video span:hover {
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+
+        /* 排行榜 */
+        .rank {
+            background-color: #fff;
+
+        }
+        .rank:hover {
+            box-shadow: 0 1px 1px #ddd;
+        }
+        .rank h2 {
+            font-size: 16px;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .rank-items {
+            height: 720px;
+            overflow: hidden;
+            padding: 0 20px 20px;
+        }
+        #rank-item li{
+            margin-top: 20px;
+        }
+        #rank-item img {
+            float: left;
+            margin-right: 12px;
+        }
+        #rank-item div {
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .rank-item-title {
+            width: 120px;
+            font-size: 14px;
+            color: #333333;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow:ellipsis;
+        }
+
+        .rank-item-user::before {
+            content: "";
+            display: inline-block;
+            background: url("./img/spritesheet.png") no-repeat -5px -229px;
+            width: 15px;
+            height: 15px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/reset.css">
+</head>
+<body>
+<div class="cf" style="margin-bottom: 30px">
+    <div class="side">
+        <div class="org-info">
+            <h2>机构简介</h2>
+            <div class="org-video">
+                <p>观看下面的视频来了解吧：</p>
+                <img src="img/video.jpg">
+                <span class="org-play"></span>
+            </div>
+
+        </div>
+        <div class="rank">
+            <h2>最热排行</h2>
+            <div class="rank-items">
+                <ul id="rank-item">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>次时代3D游戏场景制作是一门制作精良的、反响很好的课程。课程主要介绍次世代游戏场景制作的一些小的知识点，重点教你从基础细节开始掌握法
+    线贴图、高光贴图、等等功能性贴图的生成方法与烘焙。</p>
+<p>次时代3D游戏场景制作是一门制作精良的、反响很好的课程。课程主要介绍次世代游戏场景制作的一些小的知识点，重点教你从基础细节开始掌握法
+    线贴图、高光贴图、等等功能性贴图的生成方法与烘焙。</p>
+<p>次时代3D游戏场景制作是一门制作精良的、反响很好的课程。课程主要介绍次世代游戏场景制作的一些小的知识点，重点教你从基础细节开始掌握法
+    线贴图、高光贴图、等等功能性贴图的生成方法与烘焙。</p>
+<script src="js/myutil.js"></script>
+<script>
+    function hotRank() {
+        var elem = document.getElementById('rank-item');
+        var hostList = function (xhr) {
+            var data = JSON.parse(xhr.responseText);
+            for (var i = 0; i< data.length; i++) {
+                var newLi = document.createElement('li');
+                var newImg = document.createElement('img');
+                var newTitle = document.createElement('div');
+                var newUser = document.createElement('div');
+                newLi.className = 'cf';
+                newImg.src = data[i].smallPhotoUrl;
+                newImg.width = 50;
+                newImg.height =50;
+                newTitle.innerHTML = data[i].name;
+                newTitle.className = 'rank-item-title';
+                newUser.innerHTML = data[i].learnerCount;
+                newUser.className = 'rank-item-user';
+                newLi.appendChild(newImg);
+                newLi.appendChild(newTitle);
+                newLi.appendChild(newUser);
+                elem.appendChild(newLi);
+            }
+            rollUpdate();
+        };
+
+        var option = {
+            url: 'http://study.163.com/webDev/hotcouresByCategory.htm',
+            callback: hostList
+        };
+
+        AjaxUtil.ajax(option);
+        function rollUpdate() {
+            var step = function () {
+                elem.insertBefore(elem.firstChild, elem.lastChild);
+            };
+            setInterval(step, 5000);
+        }
+    }
+    hotRank();
+</script>
+</body>
+</html>

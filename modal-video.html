@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>modal-video</title>
+    <style>
+        .modal2 {
+            display: none;
+        }
+        .m2-mask {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            background-color: #000;
+            opacity: 0.7;
+            filter: alpha(opacity=70);
+        }
+        .m2-video {
+            width: 950px;
+            height: 600px;
+            background-color: #fff;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-left: -475px;
+            margin-top: -300px;
+        }
+        .m2-video h2 {
+            font-size: 18px;
+            color: #444;
+            margin: 15px 0 0 23px;
+        }
+        .m2-video video {
+            width: 95%;
+            position: absolute;
+            left: 50%;
+            top: 60%;
+            margin-bottom: 20px;
+            transform: translate(-50%, -60%);
+        }
+        .m2-video-close {
+            background: url("./img/close2.png") no-repeat;
+            width: 23px;
+            height: 22px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" href="./css/reset.css">
+</head>
+<body>
+    <button class="org-play">点我</button>
+    <p>在日常生活中，CorelDRAW平面设计像空气一样，无所不在。走在路上收到的传单，工作中交换的名片，LOGO的设计，都离不开强大的
+        CorelDRAW的支持。本课程是由邢帅教育的CorelDRAW讲师张绘荣</p>
+    <p>在日常生活中，CorelDRAW平面设计像空气一样，无所不在。走在路上收到的传单，工作中交换的名片，LOGO的设计，都离不开强大的
+        CorelDRAW的支持。本课程是由邢帅教育的CorelDRAW讲师张绘荣</p>
+    <p>在日常生活中，CorelDRAW平面设计像空气一样，无所不在。走在路上收到的传单，工作中交换的名片，LOGO的设计，都离不开强大的
+        CorelDRAW的支持。本课程是由邢帅教育的CorelDRAW讲师张绘荣</p>
+    <p>在日常生活中，CorelDRAW平面设计像空气一样，无所不在。走在路上收到的传单，工作中交换的名片，LOGO的设计，都离不开强大的
+        CorelDRAW的支持。本课程是由邢帅教育的CorelDRAW讲师张绘荣</p>
+    <p>在日常生活中，CorelDRAW平面设计像空气一样，无所不在。走在路上收到的传单，工作中交换的名片，LOGO的设计，都离不开强大的
+        CorelDRAW的支持。本课程是由邢帅教育的CorelDRAW讲师张绘荣</p>
+    <p>在日常生活中，CorelDRAW平面设计像空气一样，无所不在。走在路上收到的传单，工作中交换的名片，LOGO的设计，都离不开强大的
+        CorelDRAW的支持。本课程是由邢帅教育的CorelDRAW讲师张绘荣</p>
+    <p>在日常生活中，CorelDRAW平面设计像空气一样，无所不在。走在路上收到的传单，工作中交换的名片，LOGO的设计，都离不开强大的
+        CorelDRAW的支持。本课程是由邢帅教育的CorelDRAW讲师张绘荣</p>
+    <div class="modal2">
+        <div class="m2-mask"></div>
+        <div class="m2-video">
+            <h2>请观看下面的视频</h2>
+            <video src="http://mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4" controls="controls">
+                您的浏览器不支持 video 标签。
+            </video>
+            <span class="m2-video-close"></span>
+        </div>
+    </div>
+
+    <script src="js/myutil.js"></script>
+    <script>
+        function showVideo() {
+            var playBtn = document.querySelector('.org-play');
+            var closeBtn = document.querySelector('.m2-video-close');
+            var modal2 = document.querySelector('.modal2');
+
+            EventUtil.addHandler(playBtn, 'click', function () {
+                modal2.style.display = 'block';
+            });
+            EventUtil.addHandler(closeBtn, 'click', function () {
+                modal2.style.display = 'none';
+            })
+        }
+        showVideo();
+    </script>
+
+</body>
+</html>

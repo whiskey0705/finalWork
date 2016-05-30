@@ -8,6 +8,8 @@
     的个性化学习体验， 自由开放的交流互动环境。继网易公开课后，云课堂是网易公司在教育领域的又一重量级产品。">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/index.css">
+
+    <script src="js/CookieUtil.js"></script>
 </head>
 <body>
     <div class="container">
@@ -33,7 +35,10 @@
             <!-- 关注&取消关注 -->
             <div class="follow">
                 <span class="followed">关注</span>
-                <span class="unfollowed" style="display: none">
+                <!--<span class="followed" style="display: none">关注</span>-->
+
+                <span class="unfollowed">
+                <!--<span class="unfollowed" style="display: none">-->
                     <span class="unfollowed-focus">已关注</span>
                     <span class="unfollowed-bar">|</span>
                     <span class="unfollowed-cancel">取消</span>
@@ -243,7 +248,7 @@
                         <div class="org-video">
                             <p>观看下面的视频来了解吧：</p>
                             <img src="img/video.jpg">
-                            <span></span>
+                            <span class="org-play"></span>
                         </div>
 
                     </div>
@@ -338,7 +343,48 @@
             </div>
         </footer>
     </div>
+<!-- 登入窗口 -->
+    <div id="modal" class="modal" style="display: none">
+        <div class="mask"></div>
+        <div class="login">
+            <div class="title">登入网易云课堂</div>
+            <div class="error">错误提示</div>
+            <form id="form-login" action="http://study.163.com /webDev/login.htm" method="get">
+                <input type="text" required="required" placeholder="账号">
+                <input type="password" required="required" placeholder="密码">
+                <button class="submit">登入</button>
+                <span id="form-close"></span>
+            </form>
+        </div>
+    </div>
+<!-- 视频播放窗口 -->
+    <div class="modal2">
+        <div class="m2-mask"></div>
+        <div class="m2-video">
+            <h2>请观看下面的视频</h2>
+            <video src="http://mov.bn.netease.com/open-movie/nos/mp4/2014/12/30/SADQ86F5S_shd.mp4" controls="controls">
+                您的浏览器不支持 video 标签。
+            </video>
+            <span class="m2-video-close"></span>
+        </div>
+    </div>
 
-    <script src="js/slide.js"></script>
+    <script src="js/myutil.js"></script>
+    <script>
+        function showVideo() {
+            var playBtn = document.querySelector('.org-play');
+            var closeBtn = document.querySelector('.m2-video-close');
+            var modal2 = document.querySelector('.modal2');
+
+            EventUtil.addHandler(playBtn, 'click', function () {
+                modal2.style.display = 'block';
+            });
+            EventUtil.addHandler(closeBtn, 'click', function () {
+               modal2.style.display = 'none';
+            })
+        }
+        showVideo();
+    </script>
+
 </body>
 </html>

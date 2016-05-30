@@ -119,7 +119,7 @@ header {
 
 /* 取消关注 */
 .unfollowed {
-    display: inline-block;
+    display: none;
     text-align: center;
     background-color: #f8f8f8;
     border: 1px solid #efefef;
@@ -429,7 +429,7 @@ header {
     margin-bottom: 8px;
 }
 
-.org-video span {
+.org-play {
     position: absolute;
     background: url("../img/play.png") no-repeat;
     width: 46px;
@@ -544,4 +544,113 @@ footer {
 }
 .footWidth li:nth-child(1) {
     font-size: 12.5px;
+}
+
+/* 登入窗口*/
+.mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    top: 0;
+    left: 0;
+}
+.login {
+
+    box-sizing: border-box;
+    width: 390px;
+    height: 290px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    padding: 30px 52px 40px 40px;
+    margin-left: -195px;
+    margin-top: -145px;
+    background-color: #fff;
+}
+.title {
+    font-size: 18px;
+}
+.error {
+    line-height: 22px;
+    visibility: hidden;
+    color: #f00;
+}
+.login input {
+    width: 293px;
+    height: 45px;
+    border: 1px solid #dfdfdf;
+    font-size: 16px;
+    padding-left: 9px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+.login button {
+    width: 293px;
+    height: 45px;
+    color: #fff;
+    text-align: center;
+    background-color: #24ac46;
+    border: none;
+    margin-top: 14px;
+    font-size: 16px;
+}
+.login span {
+    position: absolute;
+    background: url("../img/close2.png") no-repeat;
+    width: 23px;
+    height: 22px;
+    top: 2px;
+    right: 3px;
+    cursor: pointer;
+}
+
+/* 视频窗口 */
+.modal2 {
+    display: none;
+}
+
+.m2-mask {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: #000;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+.m2-video {
+    width: 950px;
+    height: 600px;
+    background-color: #fff;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -475px;
+    margin-top: -300px;
+}
+.m2-video h2 {
+    font-size: 18px;
+    color: #444;
+    margin: 15px 0 0 23px;
+}
+.m2-video video {
+    width: 95%;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    margin-bottom: 20px;
+    transform: translate(-50%, -60%);
+}
+.m2-video-close {
+    background: url("../img/close2.png") no-repeat;
+    width: 23px;
+    height: 22px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
 }

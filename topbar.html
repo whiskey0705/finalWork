@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>topbar</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <style>
+        .cf::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .float-l {
+            float: left;
+        }
+        .float-r {
+            float: right;
+        }
+        .cont-width {
+            width: 960px;
+            margin: 0 auto;
+        }
+/* 顶部信息条 */
+        .top-bar {
+            background-color: #f3f3f3;
+            height: 36px;
+            line-height: 36px;
+        }
+        .top-bar a {
+            margin-left: 6px;
+            color: #21a557;
+        }
+        .top-bar-close {
+            cursor: pointer;
+            float: right;
+        }
+        .top-bar-close::before {
+            content: "";
+            display: inline-block;
+            background: url("img/spritesheet.png") no-repeat -5px -210px;
+            width: 9px;
+            height: 9px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="cont-width">
+            <span>网易云课堂微专业，帮助你掌握专业技能，令你求职或加薪多一份独特优势！<a href="#">立即查看&gt;</a></span>
+            <span class="top-bar-close">不再提醒</span>
+        </div>
+    </div>
+
+    <script src="js/myutil.js"></script>
+    <script>
+        function closeTopBar() {
+            var topBar = document.querySelector('.top-bar');
+            var topClose = document.querySelector('.top-bar-close');
+            if (CookieUtil.get('closeTopBar')) {
+                topBar.style.display = 'none';
+            } else {
+                EventUtil.addHandler(topClose, 'click', function () {
+                    CookieUtil.set('closeTopBar', true, new Date(new Date().getTime() + 86400000));
+                    topBar.style.display = 'none';
+                })
+            }
+        }
+        closeTopBar();
+    </script>
+</body>
+</html>

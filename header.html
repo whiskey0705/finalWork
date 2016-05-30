@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>header</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <style>
+        .cf::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .float-l {
+            float: left;
+        }
+        .float-r {
+            float: right;
+        }
+        .cont-width {
+            width: 960px;
+            margin: 0 auto;
+        }
+        @font-face {
+            font-family: "GillSansMT";
+            src: url("./font/GillSansMT.ttf");
+        }
+
+        /* header */
+        header {
+            height: 90px;
+            line-height: 90px;
+        }
+        .logo {
+            margin-right: 30px;
+            margin-top: 5px;
+        }
+        .logo-en {
+            font: 28px "GillSansMT";
+            color: #39a030;
+        }
+        .logo-bar {
+            background: url("./img/spritesheet.png") no-repeat -5px -254px;
+            width: 1px;
+            height: 18px;
+            display: inline-block;
+            margin: 0 4px 0 2px;
+        }
+        .logo-cn {
+            font: 22px "Hiragino Sans GB";
+            vertical-align: 10%;
+        }
+
+        .followed {
+            background-color: #21a557;
+            color: #fff;
+            /*display: none;*/
+            display: inline-block;
+            text-align: center;
+            width: 55px;
+            height: 20px;
+            line-height: 20px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .followed:hover {
+            background-color: #2fb556;
+        }
+
+        .unfollowed {
+            text-align: center;
+            display: none;
+            /*display: inline-block;*/
+            background-color: #f8f8f8;
+            border: 1px solid #efefef;
+            border-radius: 3px;
+            width: 107px;
+            height: 20px;
+            line-height: 20px;
+        }
+        .unfollowed:hover {
+            background-color: #fff;
+        }
+        .unfollowed::before {
+            content: "";
+            display: inline-block;
+            background: url("./img/spritesheet.png") no-repeat -5px -340px;
+            width: 11px;
+            height: 9px;
+            margin-right: 2px;
+        }
+        .unfollowed-bar {
+            color: #ccc;
+            margin: 0 4px 0 5px;
+        }
+        .unfollowed-cancel {
+            color: #999;
+            cursor: pointer;
+        }
+        .unfollowed-cancel:hover {
+            color: #21a557;
+            text-decoration: underline;
+        }
+
+        .follow-num {
+            margin-left: 15px;
+        }
+        .follow-num::before {
+            content: "粉丝";
+            display: inline-block;
+            color: #666;
+            margin-right: 6px;
+        }
+
+        nav a {
+            font: 16px "Hiragino Sans GB";
+            color: #666;
+            margin-left: 55px;
+        }
+        nav a:hover {
+            color: #39a030;
+        }
+        .nav-search {
+            background: url("./img/spritesheet.png") no-repeat -5px -282px;
+            width: 19px;
+            height: 19px;
+            cursor: pointer;
+            display: inline-block;
+            margin-left: 30px;
+            vertical-align: middle;
+        }
+        .nav-search:hover {
+            background-position: -5px -311px;
+        }
+
+
+        /* modal */
+        .mask {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background-color: #000;
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+            top: 0;
+            left: 0;
+        }
+        .login {
+
+            box-sizing: border-box;
+            width: 390px;
+            height: 290px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            padding: 30px 52px 40px 40px;
+            margin-left: -195px;
+            margin-top: -145px;
+            background-color: #fff;
+        }
+        .title {
+            font-size: 18px;
+        }
+        .error {
+            line-height: 22px;
+            visibility: hidden;
+            color: #f00;
+        }
+        .login input {
+            width: 293px;
+            height: 45px;
+            border: 1px solid #dfdfdf;
+            font-size: 16px;
+            padding-left: 9px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        .login button {
+            width: 293px;
+            height: 45px;
+            color: #fff;
+            text-align: center;
+            background-color: #24ac46;
+            border: none;
+            margin-top: 14px;
+            font-size: 16px;
+        }
+        .login span {
+            position: absolute;
+            background: url("./img/close2.png") no-repeat;
+            width: 23px;
+            height: 22px;
+            top: 2px;
+            right: 3px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="cont-width cf">
+        <div class="logo float-l">
+            <span class="logo-en">EDU</span>
+            <span class="logo-bar"></span>
+            <span class="logo-cn">网易教育产品部</span>
+        </div>
+
+        <div class="follow float-l">
+            <span class="followed">关注</span>
+            <span class="unfollowed">
+                <span class="unfollowed-txt">已关注</span>
+                <span class="unfollowed-bar">|</span>
+                <span class="unfollowed-cancel">取消</span>
+            </span>
+            <span class="follow-num">45</span>
+        </div>
+        <nav class="float-r">
+            <span><a href="http://open.163.com/" target="_blank">网易公开课</a></span>
+            <span><a href="http://study.163.com/" target="_blank">云课堂</a></span>
+            <span><a href="http://www.icourse163.org/" target="_blank">中国大学MOOC</a></span>
+            <span class="nav-search"></span>
+        </nav>
+    </header>
+
+    <div class="modal" style="display: none">
+        <div class="mask"></div>
+        <div class="login">
+            <div class="title">登入网易云课堂</div>
+            <div class="error">错误提示</div>
+            <form id="form-login" action="http://study.163.com /webDev/login.htm" method="get">
+                <input type="text" required="required" placeholder="账号">
+                <input type="password" required="required" placeholder="密码">
+                <button class="form-submit">登入</button>
+                <span class="form-close"></span>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/md5.js"></script>
+    <script src="js/myutil.js"></script>
+    <script>
+        function login() {
+            var followedBtn = document.querySelector('.followed');
+            var modal = document.querySelector('.modal');
+            var unfollowedBtn = document.querySelector('.unfollowed');
+            var followNum = document.querySelector('.follow-num');
+            var submitBtn = document.querySelector('.form-submit');
+            var userName = document.getElementById('form-login').getElementsByTagName('input')[0];
+            var passWord = document.getElementById('form-login').getElementsByTagName('input')[1];
+            var closeBtn = document.querySelector('.form-close');
+            var cancelBtn = document.querySelector('.unfollowed-cancel');
+            var error = document.querySelector('.error');
+
+// 如果有followSuc的cookie，直接显示已关注面板
+            if (CookieUtil.get('followSuc')) {
+                followSuc();
+            }
+
+// 定义关注成功函数，隐藏modal、关注面板，显示已关注面板及关注数+1
+            function followSuc() {
+                modal.style.display = 'none';
+                followedBtn.style.display = 'none';
+                unfollowedBtn.style.display = 'inline-block';
+                followNum.innerHTML = parseInt(followNum.innerHTML) + 1;
+            }
+//关注按钮click事件
+            EventUtil.addHandler(followedBtn, 'click', function () {
+                var option= {
+                    url: 'http://study.163.com/webDev/attention.htm',
+                    callback: function (xhr) {
+//                        如果关注按钮的请求返回1，同时存在loginSuc的cookie，那么设置新的cookie，执行followSuc()
+                        if (xhr.responseText == 1) {
+                            if (CookieUtil.get('loginSuc')) {
+                                CookieUtil.set('followSuc', true);
+                                followSuc();
+                            } else {
+                                modal.style.display = 'block';
+                            }
+                        }
+                    }
+                };
+                AjaxUtil.ajax(option);
+            });
+
+//提交按钮click事件
+            EventUtil.addHandler(submitBtn, 'click', function () {
+                var option = {
+                    url: "http://study.163.com/webDev/login.htm",
+                    data: {
+                        userName: hex_md5(userName.value),
+                        password: hex_md5(passWord.value)
+                    },
+                    callback: function (xhr) {
+                        if (xhr.responseText == 1) {
+                            CookieUtil.set('loginSuc', true);
+                            followSuc();
+                        } else if (xhr.responseText == 0) {
+                            error.style.visibility = 'visible';
+                            error.innerHTML = '匹配用户名密码失败';
+                        }
+                    }
+                };
+//                console.log(option.data.userName);
+//                console.log(option.data.password);
+                AjaxUtil.ajax(option);
+            });
+
+// 关闭按钮click事件
+            EventUtil.addHandler(closeBtn, 'click', function () {
+                modal.style.display = 'none';
+            });
+//取消按钮click事件
+            EventUtil.addHandler(cancelBtn, 'click', function () {
+                followedBtn.style.display = 'inline-block';
+                unfollowedBtn.style.display = 'none';
+                followNum.innerHTML = parseInt(followNum.innerHTML) - 1;
+            });
+        }
+
+        login();
+
+    </script>
+</body>
+</html>

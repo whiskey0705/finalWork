@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登入框</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .mask {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background-color: #000;
+            opacity: 0.8;
+            filter: alpha(opacity=80);
+        }
+        .login {
+
+            box-sizing: border-box;
+            width: 390px;
+            height: 290px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            padding: 30px 52px 40px 40px;
+            margin-left: -195px;
+            margin-top: -145px;
+            background-color: #fff;
+        }
+        .title {
+            font-size: 18px;
+            font-family: "Microsoft yahei";
+        }
+        .error {
+            line-height: 22px;
+            visibility: hidden;
+        }
+        .login input {
+            width: 293px;
+            height: 45px;
+            border: 1px solid #dfdfdf;
+            font-size: 16px;
+            padding-left: 9px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+        .login button {
+            width: 293px;
+            height: 45px;
+            color: #fff;
+            text-align: center;
+            background-color: #24ac46;
+            border: none;
+            margin-top: 14px;
+            font-size: 16px;
+            font-family: "Microsoft yahei";
+        }
+        .login span {
+            position: absolute;
+            background: url("img/close2.png") no-repeat;
+            width: 23px;
+            height: 22px;
+            top: 2px;
+            right: 3px;
+        }
+    </style>
+</head>
+<body>
+<div class="modal">
+    <div class="mask"></div>
+    <div class="login">
+        <div class="title">登入网易云课堂</div>
+        <div class="error">错误提示</div>
+        <form id="login" action="http://study.163.com /webDev/login.htm" method="get ">
+            <input type="text" placeholder="账号">
+            <input type="password" placeholder="密码">
+            <button>登入</button>
+            <span></span>
+        </form>
+    </div>
+</div>
+</body>
+</html>
