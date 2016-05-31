@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>course</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        .cf::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .float-l {
+            float: left;
+        }
+        .float-r {
+            float: right;
+        }
+        .cont-width {
+            width: 960px;
+            margin: 0 auto;
+        }
+
+
+        .tab {
+            width: 440px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 1px #333;
+            cursor: pointer;
+        }
+        .tab li {
+            float: left;
+            font-size: 20px;
+            width: 220px;
+            height: 50px;
+            line-height: 50px;
+            color: #333;
+            background-color: #fff;
+        }
+        .tab .tab-current {
+            background-color: #39a030;
+            color: #fff;
+        }
+
+        .main {
+            width: 980px;
+            margin: 20px;
+        }
+
+        .course-li {
+            display: inline-block;
+            margin: 0 20px 20px 0;
+            position: relative;
+            box-shadow: 0 1px 1px #333;
+        }
+        .course-info {
+            height: 245px;
+            width: 220px;
+        }
+        .course-info img {
+            width: 220px;
+            height: 124px;
+        }
+
+        .crs-content {
+            padding: 10px 5px;
+        }
+
+        .crs-provider {
+            margin-top: 8px;
+            color: #999;
+        }
+        .crs-count {
+            display: inline-block;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 2px;
+            margin: 8px 0;
+            color: #ddd;
+        }
+        .crs-count::before {
+            content: "";
+            display: inline-block;
+            background: url("./img/spritesheet.png") no-repeat -5px -229px;
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        .crs-price {
+            color: #ff3f00;
+        }
+        .limited {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        /* hover样式 */
+        .hover-div {
+            box-shadow: 0 1px 1px #333;
+            z-index: 50;
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            width: 470px;
+            height: 250px;
+            overflow: hidden;
+            padding-top: 20px;
+            background-color: #fff;
+        }
+        .hover-inner img {
+            width: 220px;
+            height: 124px;
+            float: left;
+            margin: 0 15px 0 20px;
+        }
+        .hover-inner h3 {
+            margin-right: 20px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .hover-inner div {
+            margin-top: 5px;
+        }
+        .inner-study::before {
+            content: "";
+            display: inline-block;
+            background: url("./img/spritesheet.png") no-repeat -5px -229px;
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .hover-descript {
+            background-color: #f8f8f8;
+            padding: 20px;
+            line-height: 27px;
+        }
+
+        /* page */
+        #course-page {
+            font-size: 14px;
+            text-align: right;
+            margin-bottom: 40px;
+        }
+        #course-page .page-current {
+            color: #9dd8b1;
+        }
+        #course-page i,
+        #course-page span {
+            text-align: center;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+        #course-page span:hover {
+            color: #fff;
+            background-color: #9dd8b1;
+        }
+        #course-page .page-prev {
+            background: url("./img/rect-lf.png");
+            width: 30px;
+            height: 20px;
+        }
+        #course-page .page-next {
+            background: url("./img/rect-rt.png");
+            width: 30px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <ul class="tab cf">
+            <li id="tab1" class="tab-current">产品设计</li>
+            <li id="tab2">编程语言</li>
+        </ul>
+        <ul id="course-list">
+
+        </ul>
+        <div id="course-page">
+            <i class="page-prev"></i>
+            <span class="page-current">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <i class="page-next"></i>
+        </div>
+    </div>
+
+    <script src="js/myutil.js"></script>
+    <script>
+        /**
+         *课程列表
+         * @param nowNum 当前页码
+         * @param typeNum tab选项卡的种类
+         */
+        function courseList(nowNum, typeNum) {
+//            服务器返回的筛选类型（10：产品设计；20：编程语言），如果没传入typeNum默认取10
+            typeNum = typeNum || 10;
+//            typeNum = typeNum || 20;
+//            定义ajax请求成功后的callback函数
+            var createList = function (xhr) {
+                var data = JSON.parse(xhr.responseText);
+                var parentUl = document.getElementById('course-list');
+//                先清空原来course-list下的内容
+                parentUl.innerHTML = '';
+//                生成新的课程内容
+                for (var i = 0; i < data.list.length; i++) {
+//                    课程列表简介
+                    var newLi = document.createElement('li');
+                    var newDiv = document.createElement('div');
+                    var newInner = document.createElement('div');
+                    var newImg = document.createElement('img');
+                    var newH4 = document.createElement('h4');
+                    var newProvider = document.createElement('div');
+                    var newLearnerCount = document.createElement('div');
+                    var newPrice = document.createElement('div');
+
+                    newLi.className = 'course-li';
+                    newDiv.className = 'course-info';
+                    newImg.src = data.list[i]. middlePhotoUrl;
+                    newH4.innerHTML = data.list[i].name;
+                    newH4.className = 'limited';
+                    newProvider.innerHTML = data.list[i].provider;
+                    newProvider.className = 'crs-provider';
+                    newLearnerCount.innerHTML = data.list[i].learnerCount;
+                    newLearnerCount.className = 'crs-count';
+                    newPrice.innerHTML = data.list[i].price == 0 ? '免费' : '￥' + data.list[i].price;
+                    newPrice.className = 'crs-price';
+                    newInner.className = 'crs-content';
+
+                    newInner.appendChild(newH4);
+                    newInner.appendChild(newProvider);
+                    newInner.appendChild(newLearnerCount);
+                    newInner.appendChild(newPrice);
+                    newDiv.appendChild(newImg);
+                    newDiv.appendChild(newInner);
+                    newLi.appendChild(newDiv);
+//                    将动态生成的所有元素添加到ul上
+                    parentUl.appendChild(newLi);
+
+//                  课程列表详情
+                    var hoverDiv = document.createElement('div');
+                    var hoverInner = document.createElement('div');
+                    var innerImg = document.createElement('img');
+                    var innerH3 = document.createElement('h3');
+                    var innerStudy = document.createElement('div');
+                    var innerAuthor = document.createElement('div');
+                    var innerClass = document.createElement('div');
+                    var outerP = document.createElement('p');
+
+                    hoverDiv.className = 'hover-div';
+                    hoverInner.className = 'hover-inner cf';
+                    innerImg.src = data.list[i].middlePhotoUrl;
+                    innerH3.innerHTML = data.list[i].name;
+                    innerH3.className = 'limited';
+                    innerStudy.className = 'inner-study';
+                    innerStudy.innerHTML = data.list[i].learnerCount + '人在学';
+                    innerAuthor.innerHTML = '发布者&nbsp;:&nbsp;' + data.list[i].provider;
+                    innerClass.innerHTML = '分类&nbsp;:&nbsp;' + data.list[i].categoryName;
+                    outerP.className = 'hover-descript';
+                    outerP.innerHTML = data.list[i].description;
+
+                    hoverInner.appendChild(innerImg);
+                    hoverInner.appendChild(innerH3);
+                    hoverInner.appendChild(innerStudy);
+                    hoverInner.appendChild(innerAuthor);
+                    hoverInner.appendChild(innerClass);
+                    hoverDiv.appendChild(hoverInner);
+                    hoverDiv.appendChild(outerP);
+                    newLi.appendChild(hoverDiv);
+
+//                    默认情况下课程详情列表
+                    hoverDiv.style.display = 'none';
+//                    hoverDiv.style.display = 'block';
+//                    newDiv.style.display = 'none';
+                }
+//                定义获取相同className函数
+                function getClassName (ele,cls) {
+                    var elem = ele.getElementsByTagName("*");
+                    var arr = [];
+                    for (var i = 0; i < elem.length; i++) {
+                        if (elem[i].className == cls) {
+                            arr.push(elem[i])
+                        }
+                    }
+                    return arr;
+                }
+
+                var showCourse = function () {
+//                    获取课程列表li下的第一个div
+                    var showElem = getClassName(parentUl, 'course-info');
+                    var hideElem = getClassName(parentUl, 'hover-div');
+
+                    for (var i = 0; i < showElem.length; i++) {
+                        showElem[i].index = i;
+                        showElem[i].onmouseover = function () {
+                            for (var j = 0; j < showElem.length; j++) {
+                                hideElem[j].style.display = 'none';
+                            }
+                            hideElem[this.index].style.display = 'block';
+                        };
+                    }
+                };
+                var hideCourse = function () {
+                    var hideElem = getClassName(parentUl, 'hover-div');
+
+                    for (var i = 0; i < hideElem.length; i++) {
+                        hideElem[i].onmouseout = function () {
+                            this.style.display = 'none';
+                        };
+
+                    }
+                };
+                showCourse();
+                hideCourse();
+            };
+
+            var option = {
+                url: 'http://study.163.com/webDev/couresByCategory.htm',
+                data: {
+                    pageNo: nowNum,
+                    psize: 20,
+                    type: typeNum
+                },
+                callback: createList
+            };
+
+            AjaxUtil.ajax(option);
+        }
+        courseList(1);
+//        courseList(2);
+
+
+        function changeCourse() {
+            var designBtn = document.querySelector('#tab1');
+            var codeBtn = document.querySelector('#tab2');
+            
+            EventUtil.addHandler(designBtn, 'click', function () {
+                designBtn.className = 'tab-current';
+                codeBtn.className = '';
+                courseList(1, 10);
+            });
+
+            EventUtil.addHandler(codeBtn, 'click', function () {
+                designBtn.className = '';
+                codeBtn.className = 'tab-current';
+                courseList(1, 20);
+            })
+        }
+        changeCourse();
+//
+
+        function changePage() {
+            var coursePage = document.getElementById('course-page');
+            var pageBtn = coursePage.getElementsByTagName('span');
+            var prevBtn = coursePage.querySelector('.page-prev');
+            var nextBtn = coursePage.querySelector('.page-next');
+            var curPage = 0;
+
+            for (var i = 0; i< pageBtn.length; i++) {
+                pageBtn[i].index = i;
+                pageBtn[i].onclick = function () {
+                    for (var j = 0; j < pageBtn.length; j++) {
+                        pageBtn[j].className = '';
+                    }
+                    this.className = 'page-current';
+                    curPage = this.index;
+                    courseList(curPage + 1);
+                    console.log(curPage);
+                };
+
+                prevBtn.onclick = function () {
+                    if (curPage < 1) {
+                        return;
+                    } else {
+                        curPage = curPage - 1;
+                        for (var j = 0; j < pageBtn.length; j++) {
+                            pageBtn[j].className = '';
+                        }
+                        pageBtn[curPage].className = 'page-current';
+                        courseList(curPage + 1);
+                    }
+                };
+
+                nextBtn.onclick = function () {
+                    if (curPage > 6) {
+                        return;
+                    } else {
+                        curPage = curPage + 1;
+                        for (var j = 0; j < pageBtn.length; j++) {
+                            pageBtn[j].className = '';
+                        }
+                        pageBtn[curPage].className = 'page-current';
+                        courseList(curPage + 1);
+                    }
+                }
+            }
+
+        }
+
+        changePage();
+
+
+
+
+
+    </script>
+
+</body>
+</html>
