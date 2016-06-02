@@ -21,12 +21,12 @@
             margin: 0 auto;
         }
 /* 顶部信息条 */
-        .top-bar {
+        #top-bar {
             background-color: #f3f3f3;
             height: 36px;
             line-height: 36px;
         }
-        .top-bar a {
+        #top-bar a {
             margin-left: 6px;
             color: #21a557;
         }
@@ -45,7 +45,14 @@
     </style>
 </head>
 <body>
-    <div class="top-bar">
+    <!--<div class="top-bar">-->
+        <!--<div class="cont-width">-->
+            <!--<span>网易云课堂微专业，帮助你掌握专业技能，令你求职或加薪多一份独特优势！<a href="#">立即查看&gt;</a></span>-->
+            <!--<span class="top-bar-close">不再提醒</span>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div id="top-bar">
         <div class="cont-width">
             <span>网易云课堂微专业，帮助你掌握专业技能，令你求职或加薪多一份独特优势！<a href="#">立即查看&gt;</a></span>
             <span class="top-bar-close">不再提醒</span>
@@ -55,8 +62,8 @@
     <script src="js/myutil.js"></script>
     <script>
         function closeTopBar() {
-            var topBar = document.querySelector('.top-bar');
-            var topClose = document.querySelector('.top-bar-close');
+            var topBar = document.querySelector('#top-bar');
+            var topClose = topBar.querySelector('.top-bar-close');
             if (CookieUtil.get('closeTopBar')) {
                 topBar.style.display = 'none';
             } else {

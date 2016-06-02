@@ -301,8 +301,12 @@
 
                 var showCourse = function () {
 //                    获取课程列表li下的第一个div
-                    var showElem = getClassName(parentUl, 'course-info');
-                    var hideElem = getClassName(parentUl, 'hover-div');
+//                    var showElem = getClassName(parentUl, 'course-info');
+                    var showElem = document.getElementsByClassName('course-info');
+//                    var hideElem = getClassName(parentUl, 'hover-div');
+                    var hideElem = document.getElementsByClassName('hover-div');
+
+
 
                     for (var i = 0; i < showElem.length; i++) {
                         showElem[i].index = i;
@@ -315,7 +319,8 @@
                     }
                 };
                 var hideCourse = function () {
-                    var hideElem = getClassName(parentUl, 'hover-div');
+//                    var hideElem = getClassName(parentUl, 'hover-div');
+                    var hideElem = document.getElementsByClassName('hover-div');
 
                     for (var i = 0; i < hideElem.length; i++) {
                         hideElem[i].onmouseout = function () {

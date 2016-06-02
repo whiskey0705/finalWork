@@ -145,7 +145,6 @@
             left: 0;
         }
         .login {
-
             box-sizing: border-box;
             width: 390px;
             height: 290px;
@@ -225,7 +224,7 @@
         <div class="mask"></div>
         <div class="login">
             <div class="title">登入网易云课堂</div>
-            <div class="error">错误提示</div>
+            <div class="error"></div>
             <form id="form-login" action="http://study.163.com /webDev/login.htm" method="get">
                 <input type="text" required="required" placeholder="账号">
                 <input type="password" required="required" placeholder="密码">
@@ -264,25 +263,43 @@
             }
 //关注按钮click事件
             EventUtil.addHandler(followedBtn, 'click', function () {
-                var option= {
-                    url: 'http://study.163.com/webDev/attention.htm',
-                    callback: function (xhr) {
+                if (!CookieUtil.get('loginSuc')) {
+                    modal.style.display = 'block';
+                } else {
+
+                    var option= {
+                        url: 'http://study.163.com/webDev/attention.htm',
+                        callback: function (xhr) {
 //                        如果关注按钮的请求返回1，同时存在loginSuc的cookie，那么设置新的cookie，执行followSuc()
-                        if (xhr.responseText == 1) {
-                            if (CookieUtil.get('loginSuc')) {
-                                CookieUtil.set('followSuc', true);
-                                followSuc();
-                            } else {
-                                modal.style.display = 'block';
+                            if (xhr.responseText == 1) {
+                                    CookieUtil.set('followSuc', true);
+                                    followSuc();
+                                }
                             }
                         }
                     }
-                };
                 AjaxUtil.ajax(option);
-            });
+                });
+//                var option= {
+//                    url: 'http://study.163.com/webDev/attention.htm',
+//                    callback: function (xhr) {
+////                        如果关注按钮的请求返回1，同时存在loginSuc的cookie，那么设置新的cookie，执行followSuc()
+//                        if (xhr.responseText == 1) {
+//                            if (CookieUtil.get('loginSuc')) {
+//                                CookieUtil.set('followSuc', true);
+//                                followSuc();
+//                            } else {
+//                                modal.style.display = 'block';
+//                            }
+//                        }
+//                    }
+//                };
+
+//            });
 
 //提交按钮click事件
-            EventUtil.addHandler(submitBtn, 'click', function () {
+            EventUtil.addHandler(submitBtn, 'click', function (e) {
+                var event = e || event;
                 var option = {
                     url: "http://study.163.com/webDev/login.htm",
                     data: {
@@ -292,6 +309,7 @@
                     callback: function (xhr) {
                         if (xhr.responseText == 1) {
                             CookieUtil.set('loginSuc', true);
+                            CookieUtil.set('followSuc', true);
                             followSuc();
                         } else if (xhr.responseText == 0) {
                             error.style.visibility = 'visible';
@@ -302,6 +320,7 @@
 //                console.log(option.data.userName);
 //                console.log(option.data.password);
                 AjaxUtil.ajax(option);
+                event.preventDefault();
             });
 
 // 关闭按钮click事件
